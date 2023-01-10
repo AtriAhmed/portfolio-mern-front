@@ -1,0 +1,23 @@
+.a1 {
+    animation-duration: 2s !important;
+}
+
+.a2 {
+    animation-delay: 0.25s;
+    animation-duration: 2s !important
+}
+
+.a3 {
+    animation-delay: 0.5s;
+    animation-duration: 2s !important
+}
+
+.a4 {
+    animation-delay: 0.75s;
+    animation-duration: 2s !important
+}
+
+@keyframes zoom {
+    from {transform : scale(2)}
+    to {transform : scale(1)}
+}
