@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import Loading from './Loading';
-import WorkItem from './work/WorkItem';
+import Loading from '../Loading';
+import WorkItem from './WorkItem';
 
 export default function Work() {
   const [works, setWorks] = useState([]);
@@ -41,8 +41,8 @@ export default function Work() {
     </div>)
   }
   return (
-    <div className='container mt-5 pt-5'>
-    <div className='row'>
+    <div className='mx-auto max-w-7xl mt-5 pt-5'>
+    <div className='grid grid-cols-12 gap-4'>
         {WorksList()}
     </div>
     </div>

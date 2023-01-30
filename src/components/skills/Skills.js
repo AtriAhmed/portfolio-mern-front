@@ -4,7 +4,7 @@ import Loading from "../Loading";
 import Skill from './Skill'
 
 const Experience = (props) => (
-  <div className="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+  <div className="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-4">
           <div className="p-4">
           <strong style={{fontSize:'18px'}}>{props.experience.name}</strong><br/>
             <span style={{fontSize:'14px'}}>{props.experience.position}</span><br/>
@@ -71,7 +71,6 @@ export default function Skills() {
 
     function SkillsList() {
       return skills.map((skill,i) => {
-        console.log(skill.level + "/" + i)
         return (
           <Skill
             skill={skill}
@@ -86,18 +85,18 @@ export default function Skills() {
       </div>)
     }
   return (
-    <div className="container">
-      <div className=" p-4">
+    <div className="max-w-7xl mx-auto">
+      <div className="p-4">
         <strong>Skills</strong>
         <hr></hr>
-        <div className="row">
+        <div className="grid grid-cols-12 gap-4">
         {SkillsList()}
         </div>
       </div>
-      <div className=" p-4 mt-2">
+      <div className="p-4 mt-2">
         <strong>Experience</strong>
         <hr></hr>
-        <div className="row">
+        <div className="grid grid-cols-12 gap-4">
         {ExperienceList()}   
         </div>
       </div>

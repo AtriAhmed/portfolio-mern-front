@@ -9,9 +9,10 @@ import Edit from "./components/edit";
 import Create from "./components/create";
 import About from "./components/About";
 import Skills from "./components/skills/Skills";
-import Work from "./components/Work";
+import Work from "./components/work/Work";
 import AddWork from "./components/work/AddWork";
 import AddSkill from "./components/skills/AddSkill";
+import AddType from "./components/types/AddType";
 import Contact from "./components/contact/Contact";
 import axios from 'axios'
 import "animate.css";
@@ -23,7 +24,7 @@ import RecordList from "./components/recordList";
 
 library.add(fas,far);
 
-axios.defaults.baseURL = "http://192.168.1.8:5000/";
+axios.defaults.baseURL = "https://portfoliobackend.advanceticsoft.com";
 
 function App() {
   return (
@@ -62,6 +63,7 @@ function App() {
         <Route path="/add-work" element={<AddWork />} />
         <Route path="/add-skill" element={<AddSkill />} />
         <Route path="/records" element={<RecordList />} />
+        <Route path="/add-type" element={<AddType />} />
       </Routes>
       </div>
     </div>

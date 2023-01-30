@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 export default function Skill(props) {
   const [hovered, setHovered] = useState(false)
@@ -29,8 +29,6 @@ export default function Skill(props) {
       
       addStars()
   },[props.skill.level])
-    
-    const tableau = ['1','2','3','4','5']
 
     const mouseEnterHandler = (e) =>{    
         setHovered(true)
@@ -41,16 +39,11 @@ export default function Skill(props) {
     }
 
     return(
-    <div className="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 mb-2">
-            <div style={hovered ? {transition:'0.4s',scale:'1.1'} : {transition:'0.4s',scale:'1'}} className={`card border-0 p-4`} onMouseEnter={mouseEnterHandler} onMouseLeave={mouseLeaveHandler}>
-              <div className="row">
-                <div className="col-6"> <strong style={{fontSize:'18px'}}>{props.skill.name}</strong></div>
-                {/* <div className="col-6 text-primary">
-              {tableau.map((x,i)=>
-       {return (x <= props.skill.level ? <FontAwesomeIcon icon="fas fa-star" key={i} /> : <FontAwesomeIcon icon="far fa-star" key={i} />)}
-    )}    
-                </div> */}
-                <div className="col-6 text-primary" >{stars}</div>
+    <div className="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-4 mb-2">
+            <div style={hovered ? {transition:'0.4s',scale:'1.1'} : {transition:'0.4s',scale:'1'}} className={` border-0 p-4`} onMouseEnter={mouseEnterHandler} onMouseLeave={mouseLeaveHandler}>
+              <div className="grid grid-cols-12 gap-4">
+                <div className="col-span-6 capitalize"> <strong style={{fontSize:'18px'}}>{props.skill.name}</strong></div>
+                <div className="col-span-6 text-primary" >{stars}</div>
               </div>
            
             </div>

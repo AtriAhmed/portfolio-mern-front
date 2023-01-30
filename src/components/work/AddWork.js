@@ -8,6 +8,7 @@ export default function AddWork() {
     name: "",
     description:"",
     technologies:"",
+    link:"",
   });
   const [picture, setPicture] = useState([]);
 
@@ -34,6 +35,7 @@ const formData= new FormData();
             formData.append('name',form.name);
             formData.append('description',form.description);
             formData.append('technologies',form.technologies);
+            formData.append('link',form.link);
             axios.post('/add-work',formData).then(res=>{
                 alert(JSON.stringify(res))
             })
@@ -44,41 +46,51 @@ const formData= new FormData();
     <div>
       <h3>Create New Work</h3>
       <form onSubmit={onSubmit} encType='mutlipart/form-data'>
-        <div className="form-group">
+        <div className="">
           <label htmlFor="name">Name</label>
           <input
             type="text"
-            className="form-control"
+            className=""
             id="name"
             value={form.name}
             onChange={(e) => updateForm({ name: e.target.value })}
           />
         </div>
         
-        <div className="form-group">
+        <div className="">
           <label htmlFor="description">Description</label>
           <textarea
-            className="form-control"
+            className=""
             id="description"
             value={form.description}
             onChange={(e) => updateForm({ description: e.target.value })}
           />
         </div>
-        <div className="form-group">
+        <div className="">
           <label htmlFor="technologies">Technologies</label>
           <input
             type="text"
-            className="form-control"
+            className=""
             id="technologies"
             value={form.technologies}
             onChange={(e) => updateForm({ technologies: e.target.value })}
           />
         </div>
-        <div className="form-group mb-3">
+        <div className="">
+          <label htmlFor="link">Link</label>
+          <input
+            type="text"
+            className=""
+            id="link"
+            value={form.link}
+            onChange={(e) => updateForm({ link: e.target.value })}
+          />
+        </div>
+        <div className="mb-3">
                               <label>image</label>
                               <input type="file" name="image" onChange={handleImage} className="form-control"/>
                           </div>
-        <div className="form-group">
+        <div className="">
           <input
             type="submit"
             value="Create work"
