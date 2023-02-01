@@ -24,7 +24,7 @@ import RecordList from "./components/recordList";
 
 library.add(fas,far);
 
-axios.defaults.baseURL = "https://portfoliobackend.advanceticsoft.com";
+axios.defaults.baseURL = process.env.REACT_APP_URL;
 
 function App() {
   return (

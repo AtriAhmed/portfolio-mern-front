@@ -51,7 +51,7 @@ export default function Skills() {
     const [skills, setSkills] = useState([]);
     useEffect(() => {
       async function getSkills() {
-        axios.get('/get-all-skills').then((res)=>{
+        axios.get('/get-types-with-skills').then((res)=>{
           if (!res.status == 200) {
             const message = `An error occured: ${res.statusText}`;
             window.alert(message);
@@ -70,12 +70,22 @@ export default function Skills() {
     }, [skills.length]);
 
     function SkillsList() {
-      return skills.map((skill,i) => {
+      return skills.map((type,i) => {
         return (
-          <Skill
-            skill={skill}
-            key={skill._id}
-          />
+          <div className="p-4" key={i}>
+          <strong>{type._id}</strong>
+          <hr></hr>
+          <div className="grid grid-cols-12 gap-4">
+              {type.records.map((skill)=>{
+                return (
+                  <Skill
+                  skill={skill}
+                  key={skill._id}
+                />
+                )
+              })}
+          </div>
+        </div>
         );
       });
     }
@@ -86,13 +96,7 @@ export default function Skills() {
     }
   return (
     <div className="max-w-7xl mx-auto">
-      <div className="p-4">
-        <strong>Skills</strong>
-        <hr></hr>
-        <div className="grid grid-cols-12 gap-4">
         {SkillsList()}
-        </div>
-      </div>
       <div className="p-4 mt-2">
         <strong>Experience</strong>
         <hr></hr>
