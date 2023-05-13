@@ -1,52 +1,53 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react'
+import { IonIcon } from '@ionic/react';
+import { starOutline, star } from 'ionicons/icons'
 
 export default function Skill(props) {
   const [hovered, setHovered] = useState(false)
   const [stars, setStars] = useState([])
-  
 
-  function addStar(index){
-    return new Promise((res, rej)=>{
-      setTimeout(()=>{
+
+  function addStar(index) {
+    return new Promise((res, rej) => {
+      setTimeout(() => {
         setStars(prev => {
           const arr = [...prev];
-          arr[index] = index < props.skill.level ? <FontAwesomeIcon icon="fas fa-star" style={{animation:"zoom .3s linear"}} key={index} /> : <FontAwesomeIcon icon="far fa-star" style={{animation:"zoom .3s linear"}} key={index} />
+          arr[index] = index < props.skill.level ? <IonIcon icon={star} style={{ animation: "zoom .3s linear" }} key={index} className='text-xl' /> : <IonIcon icon={starOutline} className='text-xl' style={{ animation: "zoom .3s linear" }} key={index} />
           return arr
         })
         res();
-      },200)
+      }, 200)
     })
   }
 
-  useEffect(()=>{
+  useEffect(() => {
 
-    async function addStars(){
-      for (var i = 0; i<5; i++){
+    async function addStars() {
+      for (var i = 0; i < 5; i++) {
         await addStar(i)
       }
     }
-      
-      addStars()
-  },[props.skill.level])
 
-    const mouseEnterHandler = (e) =>{    
-        setHovered(true)
-    }
+    addStars()
+  }, [props.skill.level])
 
-    const mouseLeaveHandler = (e) =>{    
-      setHovered(false)
-    }
+  const mouseEnterHandler = (e) => {
+    setHovered(true)
+  }
 
-    return(
+  const mouseLeaveHandler = (e) => {
+    setHovered(false)
+  }
+
+  return (
     <div className="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-4 mb-2">
-            <div style={hovered ? {transition:'0.4s',scale:'1.1'} : {transition:'0.4s',scale:'1'}} className={` border-0 p-4`} onMouseEnter={mouseEnterHandler} onMouseLeave={mouseLeaveHandler}>
-              <div className="grid grid-cols-12 gap-4">
-                <div className="col-span-6 capitalize"> <strong style={{fontSize:'18px'}}>{props.skill.name}</strong></div>
-                <div className="col-span-6 text-primary" >{stars}</div>
-              </div>
-           
-            </div>
-          </div>
+      <div style={hovered ? { transition: '0.4s', scale: '1.1' } : { transition: '0.4s', scale: '1' }} className={` border-0 p-4`} onMouseEnter={mouseEnterHandler} onMouseLeave={mouseLeaveHandler}>
+        <div className="grid grid-cols-12 gap-4">
+          <div className="col-span-6 capitalize"> <strong style={{ fontSize: '18px' }}>{props.skill.name}</strong></div>
+          <div className="col-span-6 text-primary flex items-center" >{stars}</div>
+        </div>
+
+      </div>
+    </div>
   );
 }

@@ -1,0 +1,11 @@
+  /* Active/current link */
+  .sidebar a.active {
+    background-color: #2ac3f1;
+    color: white;
+  }
+
+  /* Links on mouse-over */
+  .sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }

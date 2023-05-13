@@ -52,7 +52,7 @@ export default function Skills() {
     useEffect(() => {
       async function getSkills() {
         axios.get('/get-types-with-skills').then((res)=>{
-          if (!res.status == 200) {
+          if (!res.status === 200) {
             const message = `An error occured: ${res.statusText}`;
             window.alert(message);
             return;

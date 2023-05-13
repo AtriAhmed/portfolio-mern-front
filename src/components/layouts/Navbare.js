@@ -1,13 +1,15 @@
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { IonIcon } from '@ionic/react'
+import { logoGithub, logoLinkedin } from 'ionicons/icons'
 import { Link } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 
 const navigation = [
-  { name: 'About', href: 'about' },
-  { name: 'Skills', href: 'skills'},
-  { name: 'Work', href: 'work' },
-  { name: 'Contact', href: 'contact'},
+  { name: 'About', href: '/' },
+  { name: 'Skills', href: 'skills' },
+  { name: 'Work', href: 'works' },
+  { name: 'Contact', href: 'contact' },
 ]
 
 function classNames(...classes) {
@@ -33,8 +35,8 @@ export default function Navbar() {
                 </Disclosure.Button>
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex flex-shrink-0 items-center">
-                    <strong>Atri Ahmed</strong>
+                <div className="flex flex-shrink-0 items-center ml-10 sm:ml-0">
+                  <strong>Atri Ahmed</strong>
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
@@ -43,7 +45,7 @@ export default function Navbar() {
                         key={item.name}
                         to={item.href}
                         className={({ isActive }) =>
-                        classNames(isActive ? 'bg-gray-900 text-white' : 'hover:bg-gray-700 hover:text-white','px-3 py-2 rounded-md text-sm font-medium transition duration-300')
+                          classNames(isActive ? 'bg-gray-900 text-white' : 'hover:bg-gray-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium transition duration-300')
                         }
                         aria-current={item.current ? 'page' : undefined}
                       >
@@ -51,6 +53,10 @@ export default function Navbar() {
                       </NavLink>
                     ))}
                   </div>
+                </div>
+                <div className='ml-auto flex gap-3'>
+                  <a href='https://github.com/AtriAhmed' target="_blank" rel='noreferrer' className='font-bold flex items-center justify-between gap-1'><IonIcon icon={logoGithub} className='text-xl' /> <span className='hidden sm:block'>Github</span></a>
+                  <a href='https://www.linkedin.com/in/ahmed-atri-5564601b2' target="_blank" rel='noreferrer' className='font-bold flex items-center justify-between gap-1'><IonIcon icon={logoLinkedin} className='text-xl' /> <span className='hidden sm:block'>Linkedin</span></a>
                 </div>
               </div>
             </div>
