@@ -17,6 +17,7 @@ import Layout from './components/layouts/Layout';
 import Skills from './components/skills/Skills';
 import Work from './components/work/Work';
 import './index.css'
+import CV from './components/cv/CV';
 
 const router = createBrowserRouter([
    {
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
                   path: "/contact",
                   element: <Contact />
                },
+               {
+                  path: "/cv",
+                  element: <CV />
+               }
             ]
          }
       ]
