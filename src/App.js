@@ -16,6 +16,7 @@ function App() {
     <div>
       <div >
         <AnimatedCursor
+
           innerSize={10}
           outerSize={10}
           color='0, 0, 0'

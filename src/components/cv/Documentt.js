@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Page, View, Document, Text, StyleSheet, Font } from '@react-pdf/renderer';
-import Loading from '../Loading';
 import axios from 'axios';
 
 Font.register({
@@ -94,7 +93,11 @@ export default function Documentt() {
 
     const [experience, setExperience] = useState([]);
     const [works, setWorks] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [contact, setContact] = useState({});
+    const [workLoading, setWorkLoading] = useState(true);
+    const [experienceLoading, setExperienceLoading] = useState(true);
+    const [skillsLoading, setSkillsLoading] = useState(true);
+    const [contactLoading, setContactLoading] = useState(true);
 
     // This method fetches the records from the database.
     useEffect(() => {
@@ -106,11 +109,29 @@ export default function Documentt() {
                     return;
                 }
                 setExperience(res.data);
-                setLoading(false);
+                setExperienceLoading(false);
             })
         }
 
         getExperience();
+
+        return;
+    }, [experience.length]);
+
+    useEffect(() => {
+        function getContact() {
+            axios.get(`/get-contact/`).then(res => {
+                if (!res.data) {
+                    const message = `An error occured: ${res.statusText}`;
+                    window.alert(message);
+                    return;
+                }
+                setContact(res.data);
+                setContactLoading(false);
+            })
+        }
+
+        getContact();
 
         return;
     }, [experience.length]);
@@ -124,7 +145,7 @@ export default function Documentt() {
                     return;
                 }
                 setWorks(res.data);
-                setLoading(false)
+                setWorkLoading(false)
             })
         }
 
@@ -144,6 +165,7 @@ export default function Documentt() {
                 }
 
                 setSkills(res.data);
+                setSkillsLoading(false)
             })
 
 
@@ -157,11 +179,11 @@ export default function Documentt() {
     function SkillsList() {
         return skills.map((type, i) => {
             return (
-                <View style={styles.item}>
+                <View key={i} style={styles.item}>
                     {type._id == "Skills" ? <Text style={styles.subTitle}>Tech Skills</Text> : <Text style={styles.subTitle}>{type._id}</Text>}
                     {type.records.map((skill) => {
                         return (
-                            <Text style={styles.content}>{skill.name}</Text>
+                            <Text key={skill._id} style={styles.content}>{skill.name}</Text>
                         )
                     })}
                 </View>
@@ -172,7 +194,7 @@ export default function Documentt() {
     function ExperienceList() {
         return experience.map((experience) => {
             return (
-                <View style={styles.item}>
+                <View key={experience._id} style={styles.item}>
                     <Text style={styles.subTitle}>{experience.name}</Text>
                     <Text style={styles.content}>{experience.position}</Text>
                     <Text style={styles.content}>{experience.date}</Text>
@@ -185,7 +207,7 @@ export default function Documentt() {
     function WorksList() {
         return works.map((work) => {
             return (
-                <View style={styles.item}>
+                <View key={work._id} style={styles.item}>
                     <Text style={styles.subTitle} >{work.name}</Text>
                     <Text style={styles.content} >{work.description}</Text>
                     <Text style={styles.content} >{work.technologies}</Text>
@@ -203,11 +225,11 @@ export default function Documentt() {
             <Page size="A4" style={styles.page}>
                 <View style={styles.leftCol}>
                     <View style={styles.dark}>
-                        <Text style={styles.title}>Ahmed Atri</Text>
-                        <Text style={styles.marginBottom}>Software Developer</Text>
-                        <Text style={styles.marginBottom}>atriahmed.1999@gmail.com</Text>
-                        <Text style={styles.marginBottom}>+216 41362519</Text>
-                        <Text style={styles.marginBottom}>Sfax, Tunisia</Text>
+                        <Text style={styles.title}>{contact?.name + " " + contact?.lastname}</Text>
+                        <Text style={styles.marginBottom}>{contact.title}</Text>
+                        <Text style={styles.marginBottom}>{contact.email}</Text>
+                        <Text style={styles.marginBottom}>{contact.phone}</Text>
+                        <Text style={styles.marginBottom}>{contact.location}</Text>
                         <Text style={styles.marginBottom}>https://github.com/AtriAhmed</Text>
                         <Text style={styles.marginBottom}>https://www.linkedin.com/in/{'\n'}ahmed-atri-5564601b2</Text>
                         <Text style={{ ...styles.marginBottom, marginTop: '4px' }}>www.ahmedatri.com</Text>
@@ -249,10 +271,14 @@ export default function Documentt() {
         </Document>
     );
 
-    if (loading) {
-        return (<div>
-            <Loading />
-        </div>)
+    if (experienceLoading || workLoading || contactLoading || skillsLoading) {
+        return (
+            <Document>
+                <Page size="A4" style={styles.page} >
+
+                </Page>
+            </Document>
+        )
     }
 
     return <>

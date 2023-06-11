@@ -43,6 +43,11 @@ export default function Sidebar() {
                 <span>About</span>
             </NavLink>
 
+            <NavLink to="/admin/contact" className="flex flex-row gap-4 p-4 no-underline">
+                <ChatBubbleLeftRightIcon className="block h-6 w-6 flex-start" aria-hidden="true" />
+                <span>Contact</span>
+            </NavLink>
+
 
         </div>
 

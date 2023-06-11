@@ -18,6 +18,7 @@ import Skills from './components/skills/Skills';
 import Work from './components/work/Work';
 import './index.css'
 import CV from './components/cv/CV';
+import ViewContact from './components/admin/contact/ViewContact';
 
 const router = createBrowserRouter([
    {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
                {
                   path: "about",
                   element: <ViewAbout />
+               },
+               {
+                  path: "contact",
+                  element: <ViewContact />
                },
             ]
          },
