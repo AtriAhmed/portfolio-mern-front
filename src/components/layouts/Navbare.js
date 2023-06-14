@@ -1,11 +1,9 @@
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { IonIcon } from '@ionic/react'
-import { PDFDownloadLink } from '@react-pdf/renderer'
 import { logoGithub, logoLinkedin } from 'ionicons/icons'
 import { Link } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
-import Documentt from '../cv/Documentt'
 
 const navigation = [
   { name: 'About', href: '/' },
@@ -55,11 +53,6 @@ export default function Navbar() {
                         {item.name}
                       </NavLink>
                     ))}
-                    <PDFDownloadLink document={<Documentt />} fileName="AhmedAtriCV.pdf">
-                      {({ loading }) =>
-                        loading ? 'Loading document...' : <button className='border border-black text-black hover:bg-black font-bold transition duration-200 hover:text-white px-4 py-2 rounded-lg'>DOWNLOAD CV</button>
-                      }
-                    </PDFDownloadLink>
                   </div>
                 </div>
                 <div className='ml-auto flex gap-3'>

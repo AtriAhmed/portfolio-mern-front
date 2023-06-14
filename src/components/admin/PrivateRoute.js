@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
-import API from '../../utils/API'
+import axios from 'axios'
 
 export default function PrivateRoute({ component: Component }) {
     const [loading, setLoading] = useState(true)
@@ -9,7 +9,7 @@ export default function PrivateRoute({ component: Component }) {
     useEffect(() => {
         async function getStatus() {
             try {
-                const res = await API.getLoginStatus()
+                const res = await axios.get('/login/status')
                 if (res.data.user.type == "visitor") {
                     navigate("/login")
                 }

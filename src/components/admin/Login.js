@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
-import API from '../../utils/API'
+import axios from 'axios'
 
 
 const Login = () => {
@@ -22,7 +22,7 @@ const Login = () => {
     }
 
     useEffect(() => {
-        API.getLoginStatus().then(res => {
+        axios.get('/login/status').then(res => {
             if (res.data.user?.username == "admin") {
                 navigate("/admin/dashboard")
             }
@@ -36,7 +36,7 @@ const Login = () => {
     const handleSubmit = async event => {
         event.preventDefault()
         try {
-            const res = await API.postUserLogin({ username: loginInput.name, password: loginInput.password });
+            const res = await axios.post('/login', { username: loginInput.name, password: loginInput.password });
             if (res.data.user.type != "visitor") {
                 navigate("/admin")
             }

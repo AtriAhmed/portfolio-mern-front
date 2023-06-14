@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Page, View, Document, Text, StyleSheet, Font } from '@react-pdf/renderer';
 import axios from 'axios';
 
@@ -218,10 +218,12 @@ export default function Documentt() {
     }
 
 
+    const ref = useRef(null)
+
 
     // Create Document Component
     const MyDocument = () => (
-        <Document>
+        <Document ref={ref}>
             <Page size="A4" style={styles.page}>
                 <View style={styles.leftCol}>
                     <View style={styles.dark}>
