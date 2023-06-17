@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer'
 import Documentt from './Documentt'
 
