@@ -99,6 +99,8 @@ export default function Documentt() {
     const [skillsLoading, setSkillsLoading] = useState(true);
     const [contactLoading, setContactLoading] = useState(true);
 
+    const [notShownExperiences, setNotShownExperiences] = useState([]);
+    
     // This method fetches the records from the database.
     useEffect(() => {
         function getExperience() {
@@ -109,15 +111,17 @@ export default function Documentt() {
                     return;
                 }
                 setExperience(res.data);
+                const array =  res.data.filter(experience=>!experience.showInCV)
+                setNotShownExperiences(array)
                 setExperienceLoading(false);
             })
         }
-
+        
         getExperience();
-
+        
         return;
     }, [experience.length]);
-
+    
     useEffect(() => {
         function getContact() {
             axios.get(`/get-contact/`).then(res => {
@@ -130,11 +134,13 @@ export default function Documentt() {
                 setContactLoading(false);
             })
         }
-
+        
         getContact();
-
+        
         return;
     }, [experience.length]);
+    
+    const [notShownWorks, setNotShownWorks] = useState([]);
 
     useEffect(() => {
         async function getWorks() {
@@ -145,14 +151,17 @@ export default function Documentt() {
                     return;
                 }
                 setWorks(res.data);
+                const array =  res.data.filter(work=>!work.showInCV)
+            setNotShownWorks(array)
                 setWorkLoading(false)
             })
         }
-
+        
         getWorks();
-
+        
         return;
     }, [works.length]);
+    
 
     const [skills, setSkills] = useState([]);
     useEffect(() => {
@@ -192,7 +201,7 @@ export default function Documentt() {
     }
 
     function ExperienceList() {
-        return experience.map((experience) => {
+        return experience.filter(experience=>experience.showInCV).map((experience) => {
             return (
                 <View key={experience._id} style={styles.item}>
                     <Text style={styles.subTitle}>{experience.name}</Text>
@@ -205,7 +214,7 @@ export default function Documentt() {
     }
 
     function WorksList() {
-        return works.map((work) => {
+        return works.filter(work=>work.showInCV).map((work) => {
             return (
                 <View key={work._id} style={styles.item}>
                     <Text style={styles.subTitle} >{work.name}</Text>
@@ -240,8 +249,9 @@ export default function Documentt() {
                     <View style={styles.gray}>
                         <View style={styles.section}>
                             <Text style={styles.title}>Education</Text>
+                            <Text style={styles.content}>Software engineering</Text>
                             <Text style={styles.content}>Institute of Computer Science and Multimedia Studies of Sfax</Text>
-                            <Text style={styles.content}>september 2018 - Present</Text>
+                            <Text style={styles.content}>september 2021 - Present</Text>
                             <Text style={styles.content}>Sfax, Tunisia</Text>
                         </View>
 
@@ -262,10 +272,12 @@ export default function Documentt() {
                     <View style={styles.section}>
                         <Text style={styles.title}>Freelance Experience</Text>
                         {WorksList()}
+                        <Text>Explore {notShownWorks.length} more {notShownWorks.length == 1 ? "project" : "projects"} at ahmedatri.com</Text>
                     </View>
                     <View style={styles.section}>
                         <Text style={styles.title}>Professional Experience</Text>
                         {ExperienceList()}
+                        <Text>Explore {notShownExperiences.length} more at ahmedatri.com</Text>
                     </View>
 
                 </View>
