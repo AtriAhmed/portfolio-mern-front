@@ -265,7 +265,7 @@ export default function Documentt() {
                 <View style={styles.rightCol}>
                     <View style={styles.section}>
                         <Text style={styles.title}>Summary</Text>
-                        <Text style={styles.content}> I am Ahmed Atri, a software engineering student specializing in full-stack web development. With freelance experience, I deliver successful projects on time and within budget. I prioritize data security and create responsive designs. Proficient in React and ExpressJS, I adapt quickly to new technologies. Currently seeking an internship or part-time job to complement my academic program.</Text>
+                        <Text style={styles.content}> I am Ahmed Atri, a software engineering student specializing in full-stack web development. With freelance experience, I deliver successful projects on time and within budget. I prioritize data security and create responsive designs. Proficient in React and ExpressJS, I adapt quickly to new technologies. Currently seeking an 4 to 6 months end of study project internship as part of my academic program</Text>
 
                     </View>
 

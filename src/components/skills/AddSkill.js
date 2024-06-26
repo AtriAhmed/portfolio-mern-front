@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
@@ -22,13 +23,7 @@ export default function AddSkill() {
     // When a post request is sent to the create url, we'll add a new record to the database.
     const newSkill = { ...form };
 
-    await fetch("http://localhost:5000/add-skill", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newSkill),
-    })
+    axios.post("/add-skill", newSkill)
     .catch(error => {
       window.alert(error);
       return;
