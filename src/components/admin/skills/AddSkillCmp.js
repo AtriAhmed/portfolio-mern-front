@@ -66,7 +66,7 @@ export default function AddSkillCmp() {
                             {
                                 typesList.map((item) => {
                                     return (
-                                        <option value={item.name} key={item._id}>{item.name}</option>
+                                        <option value={item._id} key={item._id}>{item.name}</option>
                                     )
                                 })
                             }

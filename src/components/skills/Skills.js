@@ -63,10 +63,10 @@ export default function Skills() {
     return skills.map((type, i) => {
       return (
         <div className="p-4" key={i}>
-          <strong>{type._id}</strong>
+          <strong>{type.name}</strong>
           <hr></hr>
           <div className="grid grid-cols-12 gap-4">
-            {type.records.map((skill) => {
+            {type.skills.map((skill) => {
               return (
                 <Skill
                   skill={skill}

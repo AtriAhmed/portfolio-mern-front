@@ -74,9 +74,9 @@ export default function CVCmp() {
         return skills.map((type, i) => {
             return (
                 <div className="" key={i}>
-                    <div className='font-bold border-b pb-1'>{type._id == "Skills" ? "Tech Skills" : type._id}</div>
+                    <div className='font-bold border-b pb-1'>{type.name == "Skills" ? "Tech Skills" : type.name}</div>
                     <div className="grid grid-cols-12 gap-1">
-                        {type.records.map((skill) => {
+                        {type.skills.map((skill) => {
                             return (
                                 <CVSkill
                                     skill={skill}

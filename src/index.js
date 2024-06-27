@@ -19,6 +19,8 @@ import Work from './components/work/Work';
 import './index.css'
 import CV from './components/cv/CV';
 import ViewContact from './components/admin/contact/ViewContact';
+import Education from './components/admin/education/Education';
+import ATSCV from './components/admin/cv/ATSCV';
 
 const router = createBrowserRouter([
    {
@@ -32,6 +34,10 @@ const router = createBrowserRouter([
                {
                   path: "",
                   element: <Dashboard />
+               },
+               {
+                  path: "education",
+                  element: <Education />
                },
                {
                   path: "experiences",
@@ -56,6 +62,10 @@ const router = createBrowserRouter([
                {
                   path: "contact",
                   element: <ViewContact />
+               },
+               {
+                  path: "cv",
+                  element: <ATSCV />
                },
             ]
          },

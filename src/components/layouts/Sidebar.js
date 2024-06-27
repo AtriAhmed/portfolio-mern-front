@@ -1,5 +1,5 @@
 
-import { ChatBubbleLeftRightIcon, HomeIcon, ListBulletIcon, MapPinIcon, UserIcon, UserPlusIcon } from '@heroicons/react/24/outline';
+import { AcademicCapIcon, ChatBubbleLeftRightIcon, HomeIcon, ListBulletIcon, MapPinIcon, UserIcon, UserPlusIcon } from '@heroicons/react/24/outline';
 import { NavLink } from 'react-router-dom';
 
 export default function Sidebar() {
@@ -12,9 +12,9 @@ export default function Sidebar() {
                 <span className='flex-end'>Home</span>
             </NavLink>
 
-            <NavLink to="/admin/profile" className="flex flex-row gap-4 p-4 no-underline">
-                <UserIcon className="block h-6 w-6 flex-start" aria-hidden="true" />
-                <span>Profile</span>
+            <NavLink to="/admin/education" className="flex flex-row gap-4 p-4 no-underline">
+                <AcademicCapIcon className="block h-6 w-6 flex-start" aria-hidden="true" />
+                <span>Education</span>
             </NavLink>
 
             <NavLink to="/admin/types" className="flex flex-row gap-4 p-4 no-underline">
@@ -46,6 +46,11 @@ export default function Sidebar() {
             <NavLink to="/admin/contact" className="flex flex-row gap-4 p-4 no-underline">
                 <ChatBubbleLeftRightIcon className="block h-6 w-6 flex-start" aria-hidden="true" />
                 <span>Contact</span>
+            </NavLink>
+
+            <NavLink to="/admin/cv" className="flex flex-row gap-4 p-4 no-underline">
+                <ChatBubbleLeftRightIcon className="block h-6 w-6 flex-start" aria-hidden="true" />
+                <span>ATS CV</span>
             </NavLink>
 
 

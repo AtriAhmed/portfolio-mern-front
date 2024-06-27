@@ -1,93 +1,39 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Page, View, Document, Text, StyleSheet, Font } from '@react-pdf/renderer';
+import { Page, View, Document, Text, StyleSheet } from '@react-pdf/renderer';
 import axios from 'axios';
 
-Font.register({
-    family: 'Montserrat',
-    fonts: [
-        {
-            src: 'https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtZ6Ew-Y3tcoqK5.ttf',
-        },
-        {
-            src: 'https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Uw-Y3tcoqK5.ttf',
-            fontWeight: '100',
-        },
-        {
-            src: 'https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCvr6Ew-Y3tcoqK5.ttf',
-            fontWeight: '200',
-        },
-        {
-            src: 'https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCs16Ew-Y3tcoqK5.ttf',
-            fontWeight: '300',
-        },
-        {
-            src: 'https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCu170w-Y3tcoqK5.ttf',
-            fontWeight: '600',
-        },
-        {
-            src: 'https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCuM70w-Y3tcoqK5.ttf',
-            fontWeight: '700',
-        },
-        {
-            src: 'https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCvr70w-Y3tcoqK5.ttf',
-            fontWeight: '800',
-        },
-        {
-            src: 'https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCvC70w-Y3tcoqK5.ttf',
-            fontWeight: '900',
-        }
-    ],
-});
-
-export default function Documentt() {
+export default function ATSCVDocument() {
 
     const styles = StyleSheet.create({
         page: {
             fontFamily: "Montserrat",
             fontSize: '12pt',
             display: 'flex',
-            flexDirection: 'row',
-            gap: '8px'
-        },
-        leftCol: {
-            flex: '2',
-        },
-        rightCol: {
-            flex: '3',
-            padding: '16px'
+            flexDirection: 'column',
+            gap: '4px',
+            padding: '8px'
         },
         title: {
             fontSize: '16pt',
             fontWeight: '900',
-            marginBottom: '8px',
+            marginBottom: '6px',
         },
         subTitle: {
             fontSize: '12pt',
             fontWeight: '600',
         },
         section: {
-            marginBottom: '12px',
-        },
-        gray: {
-            backgroundColor: '#f8f8f8',
-            height: '100%',
-            padding: '16px',
-        },
-        dark: {
-            paddingBottom: '10pt',
-            backgroundColor: 'black',
-            color: 'white',
-            padding: '16px'
+            marginBottom: '8px',
         },
         content: {
             fontSize: '12pt',
         },
         marginBottom: {
             fontSize: '12pt',
-            marginBottom: '8px',
+            marginBottom: '6px',
         },
         item: {
-            marginBottom: '8px',
+            marginBottom: '6px',
         },
     });
 
@@ -208,11 +154,13 @@ export default function Documentt() {
             return (
                 <View key={i} style={styles.item}>
                     {<Text style={styles.subTitle}>{type.name}</Text>}
-                    {type.skills.map((skill) => {
-                        return (
-                            <Text key={skill._id} style={styles.content}>{skill.name}</Text>
-                        )
-                    })}
+                    <View style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', gap: '4px' }}>
+                        {type.skills.map((skill) => {
+                            return (
+                                <Text key={skill._id} style={styles.content}>• {skill.name}</Text>
+                            )
+                        })}
+                    </View>
                 </View>
             );
         });
@@ -222,9 +170,10 @@ export default function Documentt() {
         return experience.filter(experience => experience.showInCV).map((experience) => {
             return (
                 <View key={experience._id} style={styles.item}>
-                    <Text style={styles.subTitle}>{experience.name}</Text>
-                    <Text style={styles.content}>{experience.position}</Text>
-                    <Text style={styles.content}>{experience.date}</Text>
+                    <View style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
+                        <Text style={styles.subTitle}>{experience.name} : </Text> <Text style={styles.content}>{experience.position} ({experience.date})
+                        </Text>
+                    </View>
                     <Text style={styles.content}>{experience.description}</Text>
                 </View>
             );
@@ -235,9 +184,10 @@ export default function Documentt() {
         return works.filter(work => work.showInCV).map((work) => {
             return (
                 <View key={work._id} style={styles.item}>
-                    <Text style={styles.subTitle} >{work.name}</Text>
-                    <Text style={styles.content} >{work.description}</Text>
-                    <Text style={styles.content} >{work.technologies}</Text>
+                    <View style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
+                        <Text style={styles.subTitle} >{work.name} :</Text><Text style={styles.content}> {work.description} ({work.technologies})</Text>
+                    </View>
+
                     <Text style={styles.content} >{work.link}</Text>
                 </View>
             );
@@ -246,10 +196,8 @@ export default function Documentt() {
 
     function Education() {
         return <>
-            <Text style={styles.content}>{education.certificate}</Text>
-            <Text style={styles.content}>{education.institute}</Text>
-            <Text style={styles.content}>{education.date}</Text>
-            <Text style={styles.content}>{education.location}</Text>
+            <Text style={styles.content}>{education.certificate} In {education.institute}</Text>
+            <Text style={styles.content}>{education.location} ({education.date})</Text>
         </>
 
     }
@@ -262,50 +210,50 @@ export default function Documentt() {
     const MyDocument = () => (
         <Document ref={ref}>
             <Page size="A4" style={styles.page}>
-                <View style={styles.leftCol}>
-                    <View style={styles.dark}>
-                        <Text style={styles.title}>{contact?.name + " " + contact?.lastname}</Text>
-                        <Text style={styles.marginBottom}>{contact.title}</Text>
-                        <Text style={styles.marginBottom}>{contact.email}</Text>
-                        <Text style={styles.marginBottom}>{contact.phone}</Text>
-                        <Text style={styles.marginBottom}>{contact.location}</Text>
-                        <Text style={styles.marginBottom}>https://github.com/AtriAhmed</Text>
-                        <Text style={styles.marginBottom}>https://www.linkedin.com/in/{'\n'}ahmed-atri-5564601b2</Text>
-                        <Text style={{ ...styles.marginBottom, marginTop: '4px' }}>www.ahmedatri.com</Text>
-                    </View>
 
-                    <View style={styles.gray}>
-                        <View style={styles.section}>
-                            <Text style={styles.title}>Education</Text>
-                            {Education()}
-                        </View>
-
-                        <View style={styles.section}>
-                            <Text style={styles.title}>Skills</Text>
-                            {SkillsList()}
-                        </View>
+                <View >
+                    <Text style={styles.title}>{contact?.name + " " + contact?.lastname}</Text>
+                    <View style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "4px" }}>
+                        <Text >• Title: {contact.title}</Text>
+                        <Text >• Email: {contact.email}</Text>
+                        <Text >• Phone: {contact.phone}</Text>
+                        <Text >• Location: {contact.location}</Text>
+                        <Text >• Github: https://github.com/AtriAhmed</Text>
+                        <Text >• Linkdedin: https://www.linkedin.com/in/ahmed-atri-5564601b2</Text>
+                        <Text >• Website: www.ahmedatri.com</Text>
                     </View>
                 </View>
 
-                <View style={styles.rightCol}>
+                <View >
                     <View style={styles.section}>
-                        <Text style={styles.title}>Summary</Text>
-                        <Text style={styles.content}> I am Ahmed Atri, a software engineering specializing in full-stack web development. With freelance experience, I deliver successful projects on time and within budget. I prioritize data security and create responsive designs. Proficient in React and ExpressJS, I adapt quickly to new technologies. Currently seeking a Web developer position.</Text>
-
+                        <Text style={styles.title}>Education</Text>
+                        {Education()}
                     </View>
 
-                    <View style={styles.section}>
-                        <Text style={styles.title}>Freelance Experience</Text>
-                        {WorksList()}
-                        <Text>Explore {notShownWorks.length} more {notShownWorks.length == 1 ? "project" : "projects"} at ahmedatri.com</Text>
+                    <View >
+                        <Text style={styles.title}>Skills</Text>
+                        {SkillsList()}
                     </View>
-                    <View style={styles.section}>
-                        <Text style={styles.title}>Professional Experience</Text>
-                        {ExperienceList()}
-                        <Text>Explore {notShownExperiences.length} more at ahmedatri.com</Text>
-                    </View>
+                </View>
+
+                <View style={styles.section}>
+                    <Text style={styles.title}>Summary</Text>
+                    <Text style={styles.content}> I am Ahmed Atri, a software engineering specializing in full-stack web development. With freelance experience, I deliver successful projects on time and within budget. I prioritize data security and create responsive designs. Proficient in React and ExpressJS, I adapt quickly to new technologies. Currently seeking a Web developer position.</Text>
 
                 </View>
+
+                <View style={styles.section}>
+                    <Text style={styles.title}>Freelance Experience</Text>
+                    {WorksList()}
+                    <Text>Explore {notShownWorks.length} more {notShownWorks.length == 1 ? "project" : "projects"} at ahmedatri.com</Text>
+                </View>
+                <View style={styles.section}>
+                    <Text style={styles.title}>Professional Experience</Text>
+                    {ExperienceList()}
+                    <Text>Explore {notShownExperiences.length} more at ahmedatri.com</Text>
+                </View>
+
+
             </Page>
         </Document>
     );
