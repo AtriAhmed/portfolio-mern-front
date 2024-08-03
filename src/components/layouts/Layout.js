@@ -18,8 +18,8 @@ export default function Layout() {
     return (
         <>
             {haveLayout() ? <Navbare /> : ""}
-            <div className="p-10" ><Outlet /></div>
-            {/*haveLayout() ? <Footer /> : ""*/}
+            <div className="p-4 sm:p-10 bg-black text-white min-h-screen" ><Outlet /></div>
+            {haveLayout() ? <Footer /> : ""}
         </>
     )
 }

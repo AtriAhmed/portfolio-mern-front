@@ -44,7 +44,7 @@ export default function Skill(props) {
       <div style={hovered ? { transition: '0.4s', scale: '1.1' } : { transition: '0.4s', scale: '1' }} className={` border-0 p-4`} onMouseEnter={mouseEnterHandler} onMouseLeave={mouseLeaveHandler}>
         <div className="grid grid-cols-12 gap-4">
           <div className="col-span-6 capitalize"> <strong style={{ fontSize: '18px' }}>{props.skill.name}</strong></div>
-          <div className="col-span-6 text-primary flex items-center" >{stars}</div>
+          <div className="col-span-6 flex items-center" >{stars}</div>
         </div>
 
       </div>

@@ -2,15 +2,16 @@ import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { IonIcon } from '@ionic/react'
 import { logoGithub, logoLinkedin } from 'ionicons/icons'
+import AnchorLink from 'react-anchor-link-smooth-scroll'
 import { Link } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 
 const navigation = [
-  { name: 'About', href: '/' },
-  { name: 'Skills', href: 'skills' },
-  { name: 'Work', href: 'works' },
-  { name: 'Contact', href: 'contact' },
-  { name: 'CV', href: 'cv' },
+  { name: 'About', href: '#about' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Work', href: '#work' },
+  { name: 'Contact', href: '#contact' },
+  { name: 'CV', href: '#cv' },
 ]
 
 function classNames(...classes) {
@@ -19,10 +20,10 @@ function classNames(...classes) {
 
 export default function Navbar() {
   return (
-    <Disclosure as="nav" >
+    <Disclosure as="nav" className="bg-black text-white fixed w-full z-50" >
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+          <div className=" mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
@@ -37,21 +38,21 @@ export default function Navbar() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center ml-10 sm:ml-0">
-                  <strong>Atri Ahmed</strong>
+                  <strong className='flex gap-2'><span className='text-yellow-500'>Ahmed Atri</span><span>|</span> <span>Fullstack Developer</span></strong>
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <NavLink
+                      <AnchorLink
                         key={item.name}
-                        to={item.href}
-                        className={({ isActive }) =>
-                          classNames(isActive ? 'bg-gray-900 text-white' : 'hover:bg-gray-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium transition duration-300')
+                        href={item.href}
+                        className={() =>
+                          classNames('hover:bg-gray-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium transition duration-300')
                         }
                         aria-current={item.current ? 'page' : undefined}
                       >
                         {item.name}
-                      </NavLink>
+                      </AnchorLink>
                     ))}
                   </div>
                 </div>
@@ -68,10 +69,10 @@ export default function Navbar() {
               {navigation.map((item) => (
                 <Disclosure.Button
                   key={item.name}
-                  as={Link}
-                  to={item.href}
+                  as={AnchorLink}
+                  href={item.href}
                   className={classNames(
-                    item.current ? 'bg-gray-900 text-white' : 'hover:bg-gray-700 hover:text-white',
+                    'hover:bg-gray-700 hover:text-white',
                     'block px-3 py-2 rounded-md text-base font-medium'
                   )}
                   aria-current={item.current ? 'page' : undefined}

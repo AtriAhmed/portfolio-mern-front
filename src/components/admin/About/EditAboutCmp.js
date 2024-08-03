@@ -57,7 +57,7 @@ export default function EditAboutCmp(props) {
                 <div>
                     <input placeholder='Title' type="text" name="title" onChange={handleInput} value={Input.title} className='block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none' />
                     <span className='text-red-600'>{errors?.name}</span>
-                    <input placeholder='Content' type="text" name="content" onChange={handleInput} value={Input.content} className='block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none' />
+                    <textarea placeholder='Content' type="text" name="content" onChange={handleInput} value={Input.content} className='block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none' />
                     <span className='text-red-600'>{errors?.content}</span>
                 </div>
                 <button type="submit" className="self-center w-[50%] bg-blue-500 hover:bg-blue-700 rounded-full py-3 text-white font-bold">Edit About</button>

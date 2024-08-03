@@ -1,42 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Loading from "../Loading";
 import Skill from './Skill'
-import Experience from "./Experience";
+import { AnimationOnScroll } from "react-animation-on-scroll";
+import Loading from "../../Loading";
 
 export default function Skills() {
-  const [experience, setExperience] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // This method fetches the records from the database.
-  useEffect(() => {
-    function getExperience() {
-      axios.get(`/get-all-experience/`).then(res => {
-        if (!res.data) {
-          const message = `An error occured: ${res.statusText}`;
-          window.alert(message);
-          return;
-        }
-        setExperience(res.data);
-        setLoading(false);
-      })
-    }
-
-    getExperience();
-
-    return;
-  }, [experience.length]);
-
-  function ExperienceList() {
-    return experience.map((experience) => {
-      return (
-        <Experience
-          experience={experience}
-          key={experience._id}
-        />
-      );
-    });
-  }
 
   const [skills, setSkills] = useState([]);
   useEffect(() => {
@@ -47,7 +16,7 @@ export default function Skills() {
           window.alert(message);
           return;
         }
-
+        setLoading(false);
         setSkills(res.data);
       })
 
@@ -62,7 +31,7 @@ export default function Skills() {
   function SkillsList() {
     return skills.map((type, i) => {
       return (
-        <div className="p-4" key={i}>
+        <AnimationOnScroll animateIn="animate__bounceInUp" duration={2} className="p-4" key={i}>
           <strong>{type.name}</strong>
           <hr></hr>
           <div className="grid grid-cols-12 gap-4">
@@ -75,7 +44,7 @@ export default function Skills() {
               )
             })}
           </div>
-        </div>
+        </AnimationOnScroll>
       );
     });
   }
@@ -85,15 +54,17 @@ export default function Skills() {
     </div>)
   }
   return (
-    <div className="max-w-7xl mx-auto">
-      {SkillsList()}
-      <div className="p-4 mt-2">
-        <strong>Experience</strong>
-        <hr></hr>
-        <div className="grid grid-cols-12 gap-4">
-          {ExperienceList()}
+    <div id="skills" className="max-w-7xl mx-auto min-h-screen flex flex-col justify-center w-full my-20">
+      <AnimationOnScroll animateIn="animate__fadeInUp" duration={2}>
+        <div className="mb-16">
+          <strong className="text-yellow-500">My Expertise</strong>
+          <hr></hr>
+          <div className="text-5xl font-black">Skills</div>
         </div>
-      </div>
+      </AnimationOnScroll >
+
+      {SkillsList()}
+
     </div>
   );
 }

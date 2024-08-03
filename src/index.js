@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App'
-import About from './components/about/About';
 import ViewAbout from './components/admin/About/ViewAbout';
 import Dashboard from './components/admin/Dashboard';
 import Experiences from './components/admin/Experience/Experiences';
@@ -11,16 +10,13 @@ import PrivateRoute from './components/admin/PrivateRoute';
 import ViewSkills from './components/admin/skills/ViewSkills';
 import Types from './components/admin/types/Types';
 import ViewWork from './components/admin/work/ViewWork';
-import Contact from './components/contact/Contact';
 import AdminLayout from './components/layouts/AdminLayout';
 import Layout from './components/layouts/Layout';
-import Skills from './components/skills/Skills';
-import Work from './components/work/Work';
 import './index.css'
-import CV from './components/cv/CV';
 import ViewContact from './components/admin/contact/ViewContact';
 import Education from './components/admin/education/Education';
 import ATSCV from './components/admin/cv/ATSCV';
+import Home from './pages/Home';
 
 const router = createBrowserRouter([
    {
@@ -79,24 +75,8 @@ const router = createBrowserRouter([
                },
                {
                   path: "",
-                  element: <About />
+                  element: <Home />
                },
-               {
-                  path: "/skills",
-                  element: <Skills />
-               },
-               {
-                  path: "/works",
-                  element: <Work />
-               },
-               {
-                  path: "/contact",
-                  element: <Contact />
-               },
-               {
-                  path: "/cv",
-                  element: <CV />
-               }
             ]
          }
       ]

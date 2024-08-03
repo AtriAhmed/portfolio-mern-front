@@ -15,7 +15,7 @@ function App() {
   return (
     <div>
       <div >
-        <AnimatedCursor
+        {/* <AnimatedCursor
 
           innerSize={10}
           outerSize={10}
@@ -36,7 +36,7 @@ function App() {
             'button',
             '.link'
           ]}
-        />
+        /> */}
         <Outlet />
       </div>
     </div>

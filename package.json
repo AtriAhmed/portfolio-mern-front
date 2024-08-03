@@ -16,7 +16,9 @@
     "fbjs": "^3.0.4",
     "ionicons": "^7.1.0",
     "react": "^18.2.0",
+    "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-animated-cursor": "^2.5.2",
+    "react-animation-on-scroll": "^5.1.0",
     "react-bootstrap": "^2.6.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
@@ -25,6 +27,7 @@
     "react-router-dom": "^6.4.3",
     "react-scripts": "^5.0.1",
     "sweetalert2": "^11.4.8",
+    "three": "^0.167.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

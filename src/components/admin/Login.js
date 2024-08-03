@@ -23,6 +23,7 @@ const Login = () => {
 
     useEffect(() => {
         axios.get('/login/status').then(res => {
+            console.log(res.data)
             if (res.data.user?.username == "admin") {
                 navigate("/admin/dashboard")
             }

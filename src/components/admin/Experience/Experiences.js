@@ -70,8 +70,9 @@ export default function Experiences() {
                 <div className='pb-3 hidden md:block text-start col-span-2'>Name</div>
                 <div className='pb-3 col-span-2 md:col-span-2 text-start'>Position</div>
                 <div className='pb-3 col-span-2 md:col-span-2 text-start'>Date</div>
-                <div className='pb-3 col-span-3 md:col-span-3 text-start'>Description</div>
-                <div className='pb-3 text-end sm:text-center col-span-3'>Actions</div>
+                <div className='pb-3 col-span-2 md:col-span-2 text-start'>Description</div>
+                <div className='pb-3 col-span-2 md:col-span-2 text-start'>Image</div>
+                <div className='pb-3 text-end sm:text-center col-span-2'>Actions</div>
             </div>
             <div className='divide-y'>
                 {itemsList.map((item) => {
@@ -81,8 +82,9 @@ export default function Experiences() {
                             <div className='pt-3 hidden md:block text-start col-span-2'>{item.name}</div>
                             <div className='pt-3 col-span-2 md:col-span-2 text-start'>{item.position}</div>
                             <div className='pt-3 col-span-2 md:col-span-2 text-start'>{item.date}</div>
-                            <div className='pt-3 col-span-3 md:col-span-3 text-start'>{item.description}</div>
-                            <div className='pt-3 text-end sm:text-center col-span-3'>
+                            <div className='pt-3 col-span-2 md:col-span-2 text-start line-clamp-3'>{item.description}</div>
+                            <div className='pt-3 col-span-2 md:col-span-2 text-start'><img src={`${process.env.REACT_APP_URL}/${item.image}`} /></div>
+                            <div className='pt-3 text-end sm:text-center col-span-2'>
                                 <div className='grid grid-cols-12'>
                                     <div className='col-span-12 sm:col-span-6 text-end sm:text-center'><button disabled={item.id === 1 ? true : false} type='button' className='btn p-0' onClick={(e) => { setToEdit(item); setEditModalShow(true) }}><PencilSquareIcon className={`'block h-8 w-8' ${item.id === 1 ? 'text-gray-400' : 'text-blue-600'}`} aria-hidden="true" /></button></div>
                                     <div className='col-span-12 sm:col-span-6 text-end sm:text-center'><button disabled={item.id === 1 ? true : false} type='button' className='btn p-0' onClick={(e) => { deleteItem(e, item); }}><TrashIcon className={`block h-8 w-8 ${item.id === 1 ? 'text-gray-400' : 'text-red-600'}`} aria-hidden="true" /></button></div>
