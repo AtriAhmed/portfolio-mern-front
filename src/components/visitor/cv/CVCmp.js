@@ -151,7 +151,7 @@ export default function CVCmp() {
                 <div className='p-6 pt-3 pb-1'>
                     <div className='font-bold text-base border-b pb-1'>Summary</div>
                     <div className='text-xs text-justify'>
-                        I am Ahmed Atri, a software engineering student specializing in full-stack web development. With freelance experience, I deliver successful projects on time and within budget. I prioritize data security and create responsive designs. Proficient in React and ExpressJS, I adapt quickly to new technologies. Currently seeking an internship or part-time job to complement my academic program.
+                        I am Ahmed Atri, a software engineer specializing in full-stack web development. With freelance experience, I deliver successful projects on time and within budget. I prioritize data security and create responsive designs. Proficient in ReactJS / Next.js and ExpressJS / Laravel.
                     </div>
                 </div>
                 <div className='p-6 pt-1'>

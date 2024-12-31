@@ -238,7 +238,7 @@ export default function ATSCVDocument() {
 
                 <View style={styles.section}>
                     <Text style={styles.title}>Summary</Text>
-                    <Text style={styles.content}> I am Ahmed Atri, a software engineering specializing in full-stack web development. With freelance experience, I deliver successful projects on time and within budget. I prioritize data security and create responsive designs. Proficient in React and ExpressJS, I adapt quickly to new technologies. Currently seeking a Web developer position.</Text>
+                    <Text style={styles.content}> I am Ahmed Atri, a software engineer specializing in full-stack web development. With freelance experience, I deliver successful projects on time and within budget. I prioritize data security and create responsive designs. Proficient in ReactJS / Next.js and ExpressJS / Laravel.</Text>
 
                 </View>
 
